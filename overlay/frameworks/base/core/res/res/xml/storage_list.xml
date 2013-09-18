@@ -39,4 +39,10 @@
     		 android:primary="true"
     		 android:removable="true"
     		 android:allowMassStorage="true" />
+
+    <storage android:mountPoint="/storage/sdcard2" 
+                 android:storageDescription="@string/storage_internal" 
+                 android:primary="false"
+                 android:removable="false" 
+                 android:allowMassStorage="true" />
 </StorageList>

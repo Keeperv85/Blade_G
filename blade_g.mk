@@ -91,6 +91,7 @@ PRODUCT_COPY_FILES += \
 # Ramdisk
 PRODUCT_COPY_FILES += \
     device/zte/blade_g/ramdisk/init:root/init \
+    device/zte/blade_g/ramdisk/init.rc:root/init.rc \
     device/zte/blade_g/ramdisk/fstab.msm7627a:root/fstab.msm7627a \
     device/zte/blade_g/ramdisk/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
     device/zte/blade_g/ramdisk/init.qcom.class_main.sh:root/init.qcom.class_main.sh \
