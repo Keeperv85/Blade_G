@@ -71,6 +71,10 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 BOARD_HAVE_BLUETOOTH := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/zte/blade_g/bluetooth
 
+#FM radio
+BOARD_HAVE_QCOM_FM := true
+
+#CAF header from 3.4 CAF kernel sources
 TARGET_SPECIFIC_HEADER_PATH := device/zte/blade_g/include
 
 # OpenGL drivers config file path
