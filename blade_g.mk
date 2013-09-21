@@ -110,9 +110,12 @@ PRODUCT_COPY_FILES += \
     device/zte/blade_g/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
     device/zte/blade_g/prebuilt/usr/keylayout/7x27a_kp.kl:system/usr/keylayout/7x27a_kp.kl \
     device/zte/blade_g/prebuilt/usr/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \
-    device/zte/blade_g/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     device/zte/blade_g/prebuilt/usr/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
     device/zte/blade_g/prebuilt/usr/keylayout/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl \
+
+#IDC
+PRODUCT_COPY_FILES += \
+    device/zte/blade_g/prebuilt/usr/idc/Synaptics_RMI4.idc:system/usr/idc/Synaptics_RMI4.idc
 
 #Firmware
 PRODUCT_COPY_FILES += \
