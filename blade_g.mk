@@ -52,9 +52,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audio.primary.msm7x27a \
     audio_policy.msm7x27a \
-    audio.a2dp.default \
-    audio_policy.conf \
-    libaudioutils \
+    audio.a2dp.default
 
 # Other
 PRODUCT_PACKAGES += \
@@ -65,10 +63,6 @@ PRODUCT_PACKAGES += \
     librpc \
     power.msm7x27a
     
-# Camera
-PRODUCT_PACKAGES += \
-    camera.msm7x27a
-
 # Misc
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
@@ -90,61 +84,11 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    device/zte/blade_g/ramdisk/init:root/init \
-    device/zte/blade_g/ramdisk/init.rc:root/init.rc \
-    device/zte/blade_g/ramdisk/fstab.msm7627a:root/fstab.msm7627a \
-    device/zte/blade_g/ramdisk/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
-    device/zte/blade_g/ramdisk/init.qcom.class_main.sh:root/init.qcom.class_main.sh \
-    device/zte/blade_g/ramdisk/init.qcom.rc:root/init.qcom.rc \
-    device/zte/blade_g/ramdisk/init.qcom.ril.path.sh:root/init.qcom.ril.path.sh \
-    device/zte/blade_g/ramdisk/init.qcom.sh:root/init.qcom.sh \
-    device/zte/blade_g/ramdisk/init.qcom.unicorn-dpi.sh:root/init.qcom.unicorn-dpi.sh \
-    device/zte/blade_g/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    device/zte/blade_g/ramdisk/init.qcom.usb.sh:root/init.qcom.usb.sh \
-    device/zte/blade_g/ramdisk/init.target.rc:root/init.target.rc \
-    device/zte/blade_g/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc
+    $(call find-copy-subdir-files,*,device/zte/blade_g/ramdisk,root)
 
-# Keychars & keylayout
+#Prebuilt files
 PRODUCT_COPY_FILES += \
-    device/zte/blade_g/prebuilt/usr/keychars/7x27a_kp.kcm:system/usr/keychars/7x27a_kp.kcm \
-    device/zte/blade_g/prebuilt/usr/keylayout/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
-    device/zte/blade_g/prebuilt/usr/keylayout/7x27a_kp.kl:system/usr/keylayout/7x27a_kp.kl \
-    device/zte/blade_g/prebuilt/usr/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \
-    device/zte/blade_g/prebuilt/usr/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
-    device/zte/blade_g/prebuilt/usr/keylayout/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl \
-
-#IDC
-PRODUCT_COPY_FILES += \
-    device/zte/blade_g/prebuilt/usr/idc/Synaptics_RMI4.idc:system/usr/idc/Synaptics_RMI4.idc
-
-#Firmware
-PRODUCT_COPY_FILES += \
-    device/zte/blade_g/prebuilt/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
-    device/zte/blade_g/prebuilt/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw
-
-#Wlan1
-PRODUCT_COPY_FILES += \
-    device/zte/blade_g/prebuilt/firmware/wlan/volans/WCN1314_cfg.dat:system/etc/firmware/wlan/volans/WCN1314_cfg.dat \
-    device/zte/blade_g/prebuilt/firmware/wlan/volans/WCN1314_qcom_cfg.ini:system/etc/firmware/wlan/volans/WCN1314_qcom_cfg.ini \
-    device/zte/blade_g/prebuilt/firmware/wlan/volans/WCN1314_qcom_fw.bin:system/etc/firmware/wlan/volans/WCN1314_qcom_fw.bin
-
-#Wlan2
-PRODUCT_COPY_FILES += \
-    device/zte/blade_g/prebuilt/firmware/ath6k/AR6003/hw2.1.1/athtcmd_ram.bin:system/etc/firmware/ath6k/AR6003/hw2.1.1/athtcmd_ram.bin \
-    device/zte/blade_g/prebuilt/firmware/ath6k/AR6003/hw2.1.1/athwlan.bin:system/etc/firmware/ath6k/AR6003/hw2.1.1/athwlan.bin \
-    device/zte/blade_g/prebuilt/firmware/ath6k/AR6003/hw2.1.1/fw-4.bin:system/etc/firmware/ath6k/AR6003/hw2.1.1/fw-4.bin \
-    device/zte/blade_g/prebuilt/firmware/ath6k/AR6003/hw2.1.1/nullTestFlow.bin:system/etc/firmware/ath6k/AR6003/hw2.1.1/nullTestFlow.bin \
-    device/zte/blade_g/prebuilt/firmware/ath6k/AR6003/hw2.1.1/softmac:system/etc/firmware/ath6k/AR6003/hw2.1.1/softmac \
-    device/zte/blade_g/prebuilt/firmware/ath6k/AR6003/hw2.1.1/utf.bin:system/etc/firmware/ath6k/AR6003/hw2.1.1/utf.bin
-
-#RIL
-PRODUCT_COPY_FILES += \
-    device/zte/blade_g/prebuilt/etc/voicemail-conf.xml:system/etc/voicemail-conf.xml:
-
-# Audio
-PRODUCT_COPY_FILES += \
-    device/zte/blade_g/prebuilt/etc/AudioFilter.csv:system/etc/AudioFilter.csv \
-    device/zte/blade_g/prebuilt/etc/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt
+    $(call find-copy-subdir-files,*,device/zte/blade_g/prebuilt,system)
 
 # Media
 PRODUCT_COPY_FILES += \

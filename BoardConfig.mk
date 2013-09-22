@@ -71,6 +71,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 BOARD_HAVE_BLUETOOTH := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/zte/blade_g/bluetooth
 
+#Use CAF headers
 TARGET_SPECIFIC_HEADER_PATH := device/zte/blade_g/include
 
 # OpenGL drivers config file path
@@ -81,9 +82,9 @@ BOARD_WLAN_DEVICE := ath6kl
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_HOSTAPD_DRIVER := NL80211
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl/ath6kl_sdio.ko"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME := "ath6kl_sdio"
-WIFI_EXT_MODULE_PATH := "/system/lib/modules/ath6kl/cfg80211.ko"
+WIFI_EXT_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
 WIFI_EXT_MODULE_NAME := "cfg80211"
 WIFI_TEST_INTERFACE := "sta"
 WIFI_DRIVER_FW_PATH_STA := "sta"
