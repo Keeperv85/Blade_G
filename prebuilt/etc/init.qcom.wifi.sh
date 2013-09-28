@@ -216,7 +216,6 @@ case "$target" in
              setprop wlan.driver.ath 1
              rm  /system/lib/modules/wlan.ko
              rm  /system/lib/modules/cfg80211.ko
-             echo STA > /sys/module/wlan/parameters/fwpath
              ln -s /system/lib/modules/ath6kl/ath6kl_sdio.ko /system/lib/modules/wlan.ko
              ln -s /system/lib/modules/ath6kl/cfg80211.ko /system/lib/modules/cfg80211.ko
              ln -s /persist/bdata.bin /system/etc/firmware/ath6k/AR6003/hw2.1.1/bdata.bin
