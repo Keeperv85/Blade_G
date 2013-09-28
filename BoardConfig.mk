@@ -78,17 +78,14 @@ TARGET_SPECIFIC_HEADER_PATH := device/zte/blade_g/include
 BOARD_EGL_CFG := device/zte/blade_g/config/egl.cfg
 
 # Wifi related definitions
-BOARD_HAS_ATH_WLAN := true
-#BOARD_WLAN_DEVICE := ath6kl
+BOARD_WLAN_DEVICE := ath6kl
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_HOSTAPD_DRIVER := NL80211
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-CONFIG_DRIVER_NL80211 := y
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME := "wlan"
 WIFI_EXT_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
 WIFI_EXT_MODULE_NAME := "cfg80211"
-WIFI_TEST_INTERFACE := "sta"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_P2P := "p2p"
