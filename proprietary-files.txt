@@ -14,7 +14,12 @@ bin/mm-pp-daemon
 bin/netmgrd
 bin/port-bridge
 bin/qmuxd
+bin/wpa_supplicant
+bin/wifi_open.sh
+bin/wifi_close.sh
 bin/wiperiface
+bin/hciattach
+bin/hci_qcomm_init
 lib/libmmjpeg.so
 lib/libOmxMpeg4Dec.so
 lib/libOmxVidEnc.so
@@ -65,5 +70,11 @@ lib/libqmi_client_qmux.so
 lib/libqmiservices.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
+lib/libhardware_legacy.so
+lib/libdsm.so
+lib/libnv.so
+lib/liboncrpc.so
+lib/libqueue.so
+lib/modules/librasdioif.ko
 lib/modules/ath6kl/ath6kl_sdio.ko
 lib/modules/ath6kl/cfg80211.ko
