@@ -38,8 +38,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libmm-omxcore \
     libstagefrighthw \
-    libOmxCore \
-    libI420colorconvert
+    libOmxCore
     
 # Graphics 
 PRODUCT_PACKAGES += \
