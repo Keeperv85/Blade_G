@@ -25,7 +25,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import init.qcom.usb.rc
+import init.${ro.hardware}.usb.rc
 import init.target.rc
 
 on init
@@ -339,11 +339,11 @@ service bridgemgrd /system/bin/bridgemgrd
     group radio qcom_diag
     disabled
 
-service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
-    class late_start
-    user system
-    group system inet
-    disabled
+#service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
+ #   class late_start
+ #   user system
+ #   group system inet
+ #   disabled
 
 service qmiproxy /system/bin/qmiproxy
     class main
