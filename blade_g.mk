@@ -36,9 +36,11 @@ PRODUCT_COPY_FILES += \
 
 # Video decoding
 PRODUCT_PACKAGES += \
-    libmm-omxcore \
-    libstagefrighthw \
-    libOmxCore
+    libOmxCore \
+    libOmxVenc \
+    libmm-omxcore \
+    libdivxdrmdecrypt \
+    libOmxVdec \
     
 # Graphics 
 PRODUCT_PACKAGES += \
@@ -55,7 +57,6 @@ PRODUCT_PACKAGES += \
 
 # Other
 PRODUCT_PACKAGES += \
-    dexpreopt \
     lights.msm7x27a \
     sensors.msm7x27a \
     gps.msm7x27a \
@@ -98,6 +99,12 @@ PRODUCT_COPY_FILES += \
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
     ro.debuggable=1
+
+# Set language & region
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.product.locale.language=hu \
+    ro.product.locale.region=HU \
+    persist.sys.timezone=Europe/Budapest
 
 # Publish that we support the live wallpaper feature.
 PRODUCT_COPY_FILES += \
