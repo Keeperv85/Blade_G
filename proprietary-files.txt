@@ -18,6 +18,7 @@ bin/hciattach
 bin/hci_qcomm_init 
 
 # Camera
+bin/mm-qcamera-daemon
 lib/libcamera_client.so
 lib/libchromatix_hi542_default_video.so
 lib/libchromatix_hi542_preview.so
@@ -55,11 +56,20 @@ lib/libgemini.so
 lib/libmmipl.so
 lib/libmmjpeg.so
 lib/liboemcamera.so
+lib/libimage-jpeg-enc-omx-comp.so
+lib/libimage-omx-common.so
+lib/libmmcamera_faceproc.so
+lib/libmmcamera_frameproc.so
+lib/libmmcamera_hdr_lib.so
+lib/libmmcamera_image_stab.so
+lib/libmmcamera_interface2.so
+lib/libmmcamera_statsproc31.so
+lib/libmmcamera_wavelet_lib.so
+lib/libmmstillomx.so
 lib/hw/camera.msm7x27a.so
 
 # OMX
 lib/libDivxDrm.so
-lib/libdivxdrmdecrypt.so
 lib/libmm-adspsvc.so
 lib/libOmxAacDec.so
 lib/libOmxAacEnc.so
