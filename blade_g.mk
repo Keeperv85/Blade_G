@@ -51,9 +51,11 @@ PRODUCT_PACKAGES += \
     
 # Audio
 PRODUCT_PACKAGES += \
-    audio.primary.msm7x27a \
-    audio_policy.msm7x27a \
-    audio.a2dp.default
+    audio.primary.blade_g \
+    audio_policy.blade_g \
+    audio.a2dp.default \
+    libaudioparameter \
+    libaudioutils
 
 # Other
 PRODUCT_PACKAGES += \
