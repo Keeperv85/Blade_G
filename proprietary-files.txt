@@ -110,6 +110,7 @@ bin/qmuxd
 bin/rmt_storage
 lib/libauth.so
 lib/libaudioeq.so
+lib/libaudcal.so
 lib/libcm.so
 lib/libdiag.so
 lib/libdsi_netctrl.so
