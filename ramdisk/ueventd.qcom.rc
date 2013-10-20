@@ -87,6 +87,7 @@
 /dev/msm_aac_in           0660   system     audio
 /dev/msm_qcelp_in         0660   system     audio
 /dev/msm_evrc_in          0660   system     audio
+/dev/msm_cad              0660   system     audio
 /dev/msm_amrnb_in         0640   system     audio
 /dev/smd3                 0660   bluetooth  bluetooth
 /dev/smd2                 0660   bluetooth  bluetooth
