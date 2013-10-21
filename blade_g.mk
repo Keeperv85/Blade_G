@@ -55,12 +55,15 @@ PRODUCT_PACKAGES += \
     audio_policy.blade_g \
     audio.a2dp.default \
 
+# GPS
+PRODUCT_PACKAGES += \
+    gps.blade_g \
+    libloc_api-rpc
+
 # Other
 PRODUCT_PACKAGES += \
     lights.msm7x27a \
     sensors.msm7x27a \
-    gps.msm7x27a \
-    librpc \
     power.msm7x27a
     
 # Misc
