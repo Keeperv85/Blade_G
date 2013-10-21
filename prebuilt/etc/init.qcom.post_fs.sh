@@ -37,7 +37,7 @@ mount -o rw,remount,barrier=1 /system
 #/system/bin/sh /system/etc/init.qcom.mdm_links.sh
 
 # Run thermal script
-#/system/bin/sh /system/etc/init.qcom.thermald_conf.sh
+/system/bin/sh /system/etc/init.qcom.thermald_conf.sh
 
 # Run wifi script
 /system/bin/sh /system/etc/init.qcom.wifi.sh
