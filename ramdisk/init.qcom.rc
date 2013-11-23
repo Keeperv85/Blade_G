@@ -61,7 +61,6 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /proc/bluetooth/sleep/proto
-    chown system system /sys/module/sco/parameters/disable_esco
     chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
     chmod 0660 /sys/module/bluetooth_power/parameters/power
     chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
@@ -97,23 +96,10 @@ on boot
     chmod 755 /system/bin/usbhub
     chmod 755 /system/bin/usbhub_init
 
-    #Remove SUID bit for iproute2 ip tool
-    chmod 0755 /system/bin/ip
-
-
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
     # create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
-
-    # setup permissions for fb1 related nodes
-    chown system graphics /sys/class/graphics/fb1/hpd
-    chmod 0664 /sys/devices/virtual/graphics/fb1/hpd
-    chmod 0664 /sys/devices/virtual/graphics/fb1/video_mode
-    chmod 0664 /sys/devices/virtual/graphics/fb1/format_3d
-
-    # Change owner and group for media server and surface flinger
-    chown system system /sys/devices/virtual/graphics/fb1/format_3d
 
     #For bridgemgr daemon to inform the USB driver of the correct transport
     chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
@@ -164,13 +150,13 @@ on boot
     chown system root /sys/class/i2c-adapter/i2c-1/1-0068/enable_device
     chown system root /sys/class/i2c-adapter/i2c-1/1-0068/pollrate_ms  
     
-    chown system root /sys/class/compass/akm8963/enable_acc
-    chown system root /sys/class/compass/akm8963/enable_mag
-    chown system root /sys/class/compass/akm8963/enable_ori
-    chown system root /sys/class/compass/akm8963/delay_acc
-    chown system root /sys/class/compass/akm8963/delay_mag
-    chown system root /sys/class/compass/akm8963/delay_ori
-    chown system root /sys/class/compass/akm8963/accel
+    chown system system /sys/class/compass/akm8963/enable_acc
+    chown system system /sys/class/compass/akm8963/enable_mag
+    chown system system /sys/class/compass/akm8963/enable_ori
+    chown system system /sys/class/compass/akm8963/delay_acc
+    chown system system /sys/class/compass/akm8963/delay_mag
+    chown system system /sys/class/compass/akm8963/delay_ori
+    chown system system /sys/class/compass/akm8963/accel
 #[ECID:000000] ZTEBSP wanghaifei end 20120405, for akm sensor device init
 
 # import cne init file
@@ -250,8 +236,6 @@ on post-fs-data
     mkdir /data/audio/ 0770 media audio
     # Enable the setgid bit on the directory
     chmod 2770 /data/audio
-
-    setprop vold.post_fs_data_done 1
 
 # Export GPIO56 for fusion targets to enable/disable hub
 service usbhub_init /system/bin/usbhub_init
