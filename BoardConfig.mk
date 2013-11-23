@@ -19,9 +19,9 @@
 USE_CAMERA_STUB := true
 BOARD_VENDOR := zte
 
-TARGET_GLOBAL_CFLAGS   += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-COMMON_GLOBAL_CFLAGS   += -DQCOM_HARDWARE
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp -mtune=cortex-a5
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp -mtune=cortex-a5
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
 # Arch related defines and optimizations
 TARGET_BOARD_PLATFORM := msm7x27a
