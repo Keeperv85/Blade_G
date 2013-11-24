@@ -62,7 +62,7 @@ PRODUCT_PACKAGES += \
 
 # Other
 PRODUCT_PACKAGES += \
-    lights.msm7x27a \
+    lights.blade_g \
     sensors.msm7x27a \
     power.msm7x27a
     
