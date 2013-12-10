@@ -206,7 +206,7 @@ AudioHardware::AudioHardware() :
         }
         else ALOGE("Could not retrieve number of MSM SND endpoints.");
     } else
-        ALOGE("Could not open MSM CAD driver.");
+        ALOGE("Could not open MSM SND driver.");
 
     audcal_initialize();
 
@@ -252,9 +252,11 @@ status_t AudioHardware::initCheck()
     return mInit ? NO_ERROR : NO_INIT;
 }
 
-AudioStreamOut* AudioHardware::openOutputStream(uint32_t devices, audio_output_flags_t flags, int *format, uint32_t *channels,
+AudioStreamOut* AudioHardware::openOutputStream(uint32_t devices, int *format, uint32_t *channels,
         uint32_t *sampleRate, status_t *status)
 {
+	audio_output_flags_t flags = static_cast<audio_output_flags_t> (*status);
+	
     ALOGD("openOutputStream: devices = %u format = %x channels = %u sampleRate = %u flags %x\n",
          devices, *format, *channels, *sampleRate, flags);
     { // scope for the lock
@@ -643,13 +645,13 @@ uint32_t AudioHardware::getMvsMode(int format)
     case AudioSystem::EVRC:
         return   MVS_MODE_IS127;
         break;
-    case AudioSystem::EVRCB:
+/*    case AudioSystem::EVRCB:
         return MVS_MODE_4GV_NB;
         break;
     case AudioSystem::EVRCWB:
         return MVS_MODE_4GV_WB;
         break;
-    default:
+*/    default:
         return BAD_INDEX;
     }
 }
@@ -868,9 +870,9 @@ size_t AudioHardware::getInputBufferSize(uint32_t sampleRate, int format, int ch
          (format != AudioSystem::AMR_NB)     &&
          (format != AudioSystem::AMR_WB)     &&
          (format != AudioSystem::EVRC)       &&
-         (format != AudioSystem::EVRCB)      &&
+/*         (format != AudioSystem::EVRCB)      &&
          (format != AudioSystem::EVRCWB)     &&
-         (format != AudioSystem::QCELP)      &&
+*/         (format != AudioSystem::QCELP)      &&
          (format != AudioSystem::AAC)){
         ALOGW("getInputBufferSize bad format: 0x%x", format);
         return 0;

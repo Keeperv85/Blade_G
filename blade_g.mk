@@ -17,6 +17,7 @@
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
@@ -70,6 +71,20 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
     dexpreopt
+
+# Bluez
+PRODUCT_PACKAGES += \
+    bluetoothd \
+    libbluetoothd \
+    libbluedroid \
+    hcitool \
+    hciconfig \
+    hciattach \
+    javax.btobex
+
+#Wireless
+PRODUCT_PACKAGES += \
+    libnetcmdiface
 
 # Permissions 
 PRODUCT_COPY_FILES += \

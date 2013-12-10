@@ -23,6 +23,13 @@ TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp -mtune=cortex-a5
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp -mtune=cortex-a5
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
+# Video & camera
+COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK -DQCOM_LEGACY_OMX -DZTE_CAMERA_HARDWARE
+
+# Platform
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+
 # Arch related defines and optimizations
 TARGET_BOARD_PLATFORM := msm7x27a
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
@@ -34,15 +41,13 @@ TARGET_CPU_SMP := true
 TARGET_HAVE_TSLIB := true
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
-TARGET_BOOTLOADER_BOARD_NAME := blade_g
 TARGET_CORTEX_CACHE_LINE_32 := true
 TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 
-# Target information
-TARGET_NO_BOOTLOADER := true
-TARGET_NO_RADIOIMAGE := true
+TARGET_ARCH_VARIANT_CPU := cortex-a5
 
 # Kernel
+TARGET_BOOTLOADER_BOARD_NAME := blade_g
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom vmalloc=200M
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_KERNEL_PAGESIZE := 4096
@@ -69,17 +74,25 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/zte/blade_g/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/zte/blade_g/bluetooth/libbt_vndcfg.txt
 
 #Use CAF headers
 TARGET_SPECIFIC_HEADER_PATH := device/zte/blade_g/include
 
-# OpenGL drivers config file path
+# Graphics
 BOARD_EGL_CFG := device/zte/blade_g/config/egl.cfg
+
+# Qualcomm hardware
+BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QCOM_LIBS := true
+BOARD_USES_QCOM_LEGACY_CAM_PARAMS := true
 
 # Wifi related definitions
 BOARD_WLAN_DEVICE := ath6kl
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_ath6kl
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_ath6kl
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME := "wlan"
@@ -113,17 +126,18 @@ TARGET_HAVE_BYPASS := false
 TARGET_USES_OVERLAY := true
 BOARD_USE_QCOM_LLVM_CLANG_RS := true
 TARGET_NO_HW_VSYNC := false
+TARGET_QCOM_DISPLAY_VARIANT := legacy
+
+# Webkit
+ENABLE_WEBGL := true
+TARGET_FORCE_CPU_UPLOAD := true
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_CUSTOM_GRAPHICS := ../../../device/zte/blade_g/recovery/graphics.c
 
-# Use this flag if the board has a ext4 partition larger than 2gb
+# Board have a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
-
-# Webkit
-ENABLE_WEBGL := true
-TARGET_FORCE_CPU_UPLOAD := true
 
 #Touch
 BOARD_USE_LEGACY_TOUCHSCREEN := true
