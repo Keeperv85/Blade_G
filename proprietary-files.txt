@@ -15,11 +15,12 @@ lib/libC2D2.so
 
 # Bluetooth
 bin/hciattach
-bin/hci_qcomm_init 
+bin/hci_qcomm_init
+lib/libbtio.so
 
 # Camera
 bin/mm-qcamera-daemon
-lib/libcamera_client.so
+lib/libI420colorconvert.so
 lib/libchromatix_hi542_default_video.so
 lib/libchromatix_hi542_preview.so
 lib/libchromatix_imx074_default_video.so
@@ -53,6 +54,8 @@ lib/libchromatix_s5k3l1yx_zsl.so
 lib/libchromatix_s5k4e1_default_video.so
 lib/libchromatix_s5k4e1_preview.so
 lib/libgemini.so
+lib/libgesture_client.so
+lib/libgestureservice.so
 lib/libmmipl.so
 lib/libmmjpeg.so
 lib/liboemcamera.so
@@ -69,6 +72,7 @@ lib/libmmstillomx.so
 lib/hw/camera.msm7x27a.so
 
 # OMX
+lib/libdivxdrmdecrypt.so
 lib/libDivxDrm.so
 lib/libmm-adspsvc.so
 lib/libOmxAacDec.so
@@ -92,6 +96,7 @@ lib/libOmxQcelp13Dec.so
 lib/libOmxQcelp13Enc.so
 lib/libOmxQcelpHwDec.so
 lib/libOmxrv9Dec.so
+lib/libOmxVidEnc.so
 lib/libOmxVp8Dec.so
 lib/libOmxWmaDec.so
 lib/libOmxWmvDec.so
@@ -103,53 +108,83 @@ lib/libmm-abl-oem.so
 lib/libmmosal.so
 lib/libqc-opt.so
 lib/libmmparser.so
+lib/libmm-audio-resampler.so
 
 # Misc files & RIL
+bin/bridgemgrd
 bin/netmgrd
 bin/qmuxd
+bin/gpu_dcvsd
 bin/rmt_storage
+bin/mm-pp-daemon
+bin/port-bridge
+bin/qmiproxy
+bin/thermald
+lib/libadc.so
 lib/libauth.so
 lib/libaudioeq.so
 lib/libaudcal.so
 lib/libaudioalsa.so
 lib/libcm.so
+lib/libcommondefs.so
 lib/libdiag.so
 lib/libdsi_netctrl.so
 lib/libdsm.so
 lib/libdsprofile.so
 lib/libdss.so
 lib/libdsutils.so
+lib/libglib.so
+lib/libgps.utils.so
 lib/libgsdi_exp.so
 lib/libgstk_exp.so
 lib/libidl.so
+lib/libloc_adapter.so
+lib/libloc_adapter.so
+lib/libloc_api-rpc-qc.so
+lib/libloc_eng.so
+lib/libloc_ext.so
 lib/libmmgsdilib.so
+lib/libmmosal.so
 lib/libnv.so
+lib/libnl_2.so
 lib/libnetmgr.so
 lib/liboem_rapi.so
 lib/liboncrpc.so
+lib/libOpenVG.so
 lib/libpbmlib.so
 lib/libqcci_legacy.so
+lib/libqc-opt.so
 lib/libqdi.so
 lib/libqdp.so
 lib/libqmi_client_qmux.so
+lib/libqmi_csvt_srvc.so
 lib/libqmiservices.so
 lib/libqmi.so
 lib/libqueue.so
+lib/libreference-ril.so
 lib/libril-qc-1.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
+lib/libril.so
+lib/libsc-a2xx.so
+lib/libuim.so
+lib/libvoem_if.so
+lib/libwidevine.so
 lib/libwms.so
 lib/libwmsts.so
+lib/libxml.so
+lib/qnet-plugin.so
 
 # Sensors
 bin/akmd8963
 lib/hw/sensors.msm7x27a.so
 
 # WiFi
-bin/wpa_supplicant
-bin/wifi_open.sh
-bin/wifi_close.sh
-lib/libhardware_legacy.so
+lib/liballjoyn.so
 lib/modules/librasdioif.ko
 lib/modules/ath6kl/ath6kl_sdio.ko
 lib/modules/ath6kl/cfg80211.ko
+
+# FM
+bin/fmconfig
+bin/fm_qsoc_patches
