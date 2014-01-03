@@ -86,6 +86,7 @@
          bluetooth interfaces.  If the device doesn't want to support tethering over bluetooth this
          should be empty. -->
     <string-array translatable="false" name="config_tether_bluetooth_regexs">
+        <item>bnep\\d</item> 
     </string-array>
 
     <!-- Max number of Bluetooth tethering connections allowed. If this is
@@ -144,10 +145,10 @@
     <string translatable="false" name="config_tether_apndata"></string>
 
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
-    <bool translatable="false" name="config_wifi_dual_band_support">false</bool>
+    <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
 
     <!-- Boolean indicating whether the wifi chipset has p2p support -->
-    <bool translatable="false" name="config_wifi_p2p_support">true</bool>
+    <bool translatable="false" name="config_wifi_p2p_support">false</bool>
     <!-- Device type information conforming to Annex B format in WiFi Direct specification.
          The default represents a dual-mode smartphone -->
     <string translatable="false" name="config_wifi_p2p_device_type">10-0050F204-5</string>
@@ -169,7 +170,7 @@
     <integer translatable="false" name="config_wifi_framework_scan_interval">300000</integer>
 
     <!-- Indicate whether the SD card is accessible without removing the battery. -->
-    <bool name="config_batterySdCardAccessibility">true</bool>
+    <bool name="config_batterySdCardAccessibility">false</bool>
 
     <!-- List of file paths for USB host busses to exclude from USB host support.
          For example, if the first USB bus on the device is used to communicate
@@ -237,11 +238,14 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>225</item>
-        <item>320</item>
-        <item>1280</item>
-        <item>2600</item>
-        <item>10240</item>
+        <item>5</item>
+        <item>10</item>
+        <item>30</item>
+        <item>300</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>3000</item>
+        <item>8000</item>
     </integer-array>
 
 
@@ -253,12 +257,15 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>20</item>
-        <item>50</item>
-        <item>80</item>
-        <item>145</item>
-        <item>200</item>
-        <item>255</item>
+        <item>25</item>
+        <item>70</item>
+        <item>70</item>
+        <item>90</item>
+        <item>90</item>
+        <item>110</item>
+        <item>140</item>
+        <item>170</item>
+        <item>240</item>
     </integer-array>
 
     <!-- CM CHANGES START HERE -->
