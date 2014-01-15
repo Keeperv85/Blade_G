@@ -112,6 +112,7 @@ lib/libmm-audio-resampler.so
 
 # Misc files & RIL
 bin/bridgemgrd
+bin/ds_fmc_appd
 bin/netmgrd
 bin/qmuxd
 bin/gpu_dcvsd
@@ -126,7 +127,9 @@ lib/libaudioeq.so
 lib/libaudcal.so
 lib/libaudioalsa.so
 lib/libcm.so
+lib/libCommandSvc.so
 lib/libcommondefs.so
+lib/libconfigdb.so
 lib/libdiag.so
 lib/libdsi_netctrl.so
 lib/libdsm.so
