@@ -218,8 +218,6 @@ case "$target" in
              rm  /system/lib/modules/cfg80211.ko
              ln -s /system/lib/modules/ath6kl/ath6kl_sdio.ko /system/lib/modules/wlan.ko
              ln -s /system/lib/modules/ath6kl/cfg80211.ko /system/lib/modules/cfg80211.ko
-             ln -s /persist/bdata.bin /system/etc/firmware/ath6k/AR6003/hw2.1.1/bdata.bin
-             ln -s /persist/msm7627a_qcom_wlan_nv.bin /system/etc/firmware/wlan/volans/WCN1314_qcom_wlan_nv.bin
              echo "********************************************************************"
               echo "*** Error:WI-FI chip ID is not specified in /persist/wlan_chip_id **"
              echo "*******    WI-FI may not work    ***********************************"
