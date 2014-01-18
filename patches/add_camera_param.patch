@@ -1,0 +1,64 @@
+From c9276d04dcf79c83f233286539556ff56547ef05 Mon Sep 17 00:00:00 2001
+From: Keeperv85 <v8506reborn@hotmail.com>
+Date: Sat, 18 Jan 2014 18:52:15 +0100
+Subject: [PATCH] Add camera param.
+
+Change-Id: I6c8794d0062b82b578d8f89b2f39bb7b0b0d0b54
+---
+ camera/CameraParameters.cpp       |   14 ++++++++++++++
+ include/camera/CameraParameters.h |   14 ++++++++++++++
+ 2 files changed, 28 insertions(+)
+
+diff --git a/camera/CameraParameters.cpp b/camera/CameraParameters.cpp
+index fd3029d..3af5935 100644
+--- a/camera/CameraParameters.cpp
++++ b/camera/CameraParameters.cpp
+@@ -255,6 +255,20 @@ const char CameraParameters::OBJECT_TRACKING_ON[] = "object-tracking";
+ const char CameraParameters::OBJECT_TRACKING_OFF[] = "object-tracking";
+ #endif
+ 
++#ifdef ZTE_CAMERA_HARDWARE
++const char CameraParameters::KEY_SHUTTER_SOUND_SELECT[] = "shutter-sound-select";
++const char CameraParameters::KEY_SHUTTER_SOUND[] = "shutter-sound";
++const char CameraParameters::KEY_ZTE_HDR_MODE[] = "zte-hdr-mode";
++const char CameraParameters::KEY_ZTE_SMILE_MODE[] = "zte-smile-mode";
++const char CameraParameters::KEY_ZTE_BRIGHTNESS[] = "zte-brightness";
++const char CameraParameters::KEY_ZTE_MAX_BRIGHTNESS[] = "zte-max-brightness";
++const char CameraParameters::ZTE_HDR_MODE_OFF[] = "zte-hdr-mode-off";
++const char CameraParameters::EFFECT_BLUISH[] = "effect-bluish";
++const char CameraParameters::EFFECT_REDDISH[] = "effect-reddish";
++const char CameraParameters::EFFECT_GREENISH[] = "effect-greenish";
++const char CameraParameters::ZTE_HDR_MODE_HDR[] = "zte-hdr-mode-hdr";
++#endif
++
+ const char CameraParameters::TRUE[] = "true";
+ const char CameraParameters::FALSE[] = "false";
+ const char CameraParameters::FOCUS_DISTANCE_INFINITY[] = "Infinity";
+diff --git a/include/camera/CameraParameters.h b/include/camera/CameraParameters.h
+index 4b0d008..30b4be5 100644
+--- a/include/camera/CameraParameters.h
++++ b/include/camera/CameraParameters.h
+@@ -721,6 +721,20 @@ public:
+     static const char OBJECT_TRACKING_OFF[];
+ #endif
+ 
++#ifdef ZTE_CAMERA_HARDWARE
++    static const char KEY_SHUTTER_SOUND_SELECT[];
++    static const char KEY_SHUTTER_SOUND[];
++    static const char KEY_ZTE_HDR_MODE[];
++    static const char KEY_ZTE_SMILE_MODE[];
++    static const char KEY_ZTE_BRIGHTNESS[];
++    static const char KEY_ZTE_MAX_BRIGHTNESS[];
++    static const char ZTE_HDR_MODE_OFF[];
++    static const char EFFECT_BLUISH[];
++    static const char EFFECT_REDDISH[];
++    static const char EFFECT_GREENISH[];
++    static const char ZTE_HDR_MODE_HDR[];
++#endif
++
+     static const char KEY_AE_BRACKET_HDR[];
+ 
+     // Value for KEY_ZOOM_SUPPORTED or KEY_SMOOTH_ZOOM_SUPPORTED.
+-- 
+1.7.9.5
+
