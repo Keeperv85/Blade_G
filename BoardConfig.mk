@@ -47,6 +47,8 @@ TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 TARGET_ARCH_VARIANT_CPU := cortex-a5
 
 # Kernel
+TARGET_KERNEL_SOURCE := kernel/zte/blade_g
+TARGET_KERNEL_CONFIG := msm7627a-perf_defconfig
 TARGET_BOOTLOADER_BOARD_NAME := blade_g
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom vmalloc=200M
 BOARD_KERNEL_BASE := 0x00200000
