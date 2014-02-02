@@ -25,15 +25,16 @@ $(call inherit-product-if-exists, vendor/zte/blade_g/blade_g-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/zte/blade_g/overlay
 
-LOCAL_PATH := device/zte/blade_g
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
+#LOCAL_PATH := device/zte/blade_g
+#ifeq ($(TARGET_PREBUILT_KERNEL),)
+#	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+#else
+#	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+#endif
+
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_KERNEL):kernel
 
 # Video decoding
 PRODUCT_PACKAGES += \
@@ -123,10 +124,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.product.locale.language=hu \
     ro.product.locale.region=HU \
     persist.sys.timezone=Europe/Budapest
-
-# Publish that we support the live wallpaper feature.
-PRODUCT_COPY_FILES += \
-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
 
 PRODUCT_PACKAGES += \
     LiveWallpapers \
