@@ -37,8 +37,6 @@ TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_SMP := true
-TARGET_HAVE_TSLIB := true
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_CORTEX_CACHE_LINE_32 := true
@@ -62,9 +60,6 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1004535296
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1291845120
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Kernel building
-TARGET_PREBUILT_KERNEL := device/zte/blade_g/kernel
-
 # Vold
 BOARD_VOLD_MAX_PARTITIONS := 36
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
@@ -79,7 +74,7 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/zte/blade_g/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/zte/blade_g/bluetooth/libbt_vndcfg.txt
 
 #Use CAF headers
-TARGET_SPECIFIC_HEADER_PATH := device/zte/blade_g/include
+#TARGET_SPECIFIC_HEADER_PATH := device/zte/blade_g/include
 
 # Graphics
 BOARD_EGL_CFG := device/zte/blade_g/config/egl.cfg
