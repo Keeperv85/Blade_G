@@ -24,6 +24,11 @@ ro.fm.mulinst.recording.support=false
 com.qc.hardware=true
 ro.vendor.extension_library=/system/lib/libqc-opt.so
 
+# Memory
+ro.zram.default=0
+persist.sys.purgeable_assets=1
+sys.mem.max_hidden_apps=10
+
 # Telephony
 rild.libpath=/system/lib/libril-qc-1.so
 rild.libargs=-d /dev/smd0
