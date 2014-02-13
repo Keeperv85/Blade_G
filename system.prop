@@ -14,6 +14,16 @@ ro.max.fling_velocity=4000
 ro.opengles.version=131072
 ro.sf.lcd_density=240
 qemu.hw.mainkeys=0
+debug.composition.7x27A.type=mdp
+debug.composition.7x25A.type=mdp
+debug.composition.8x25.type=dyn
+debug.hwc.dynThreshold=1.91
+
+# Enable Dynamic sampling to help with cases like mp3 playback.
+dev.pm.dyn_samplingrate=1
+
+# On Strider below period is found to improve power numbers for AAC MP4
+dev.pm.dyn_sample_period=700000
 
 # FM Radio
 ro.fm.analogpath.supported=true

@@ -38,11 +38,9 @@ DEVICE_PACKAGE_OVERLAYS += device/zte/blade_g/overlay
 
 # Video decoding
 PRODUCT_PACKAGES += \
-    libOmxCore \
-    libOmxVenc \
-    libmm-omxcore \
-    libdivxdrmdecrypt \
-    libOmxVdec \
+    libmm-omxcore \
+    libstagefrighthw \
+    libOmxCore
     
 # Graphics 
 PRODUCT_PACKAGES += \

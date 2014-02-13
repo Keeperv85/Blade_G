@@ -16,7 +16,6 @@
 # inherit from the proprietary version
 -include vendor/zte/blade_g/BoardConfigVendor.mk
 
-USE_CAMERA_STUB := true
 BOARD_VENDOR := zte
 
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp -mtune=cortex-a5
