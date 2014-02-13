@@ -1,30 +1,3 @@
-# Copyright (c) 2009-2012, Code Aurora Forum. All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are met:
-#     * Redistributions of source code must retain the above copyright
-#       notice, this list of conditions and the following disclaimer.
-#     * Redistributions in binary form must reproduce the above copyright
-#       notice, this list of conditions and the following disclaimer in the
-#       documentation and/or other materials provided with the distribution.
-#     * Neither the name of Code Aurora nor
-#       the names of its contributors may be used to endorse or promote
-#       products derived from this software without specific prior written
-#       permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
-# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#
-
 import init.${ro.hardware}.usb.rc
 import init.target.rc
 
@@ -51,9 +24,6 @@ on early-init
     export SECONDARY_STORAGE /storage/sdcard0
 
 on boot
-#zte-modify, yangyi, 20120717, Auto-generate BT addr random when boot if 447# NV not written, begin
-    # exec system/bin/btnvtool -O
-#zte-modify, yangyi, 20120717, Auto-generate BT addr random when boot if 447# NV not written, end
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -85,23 +55,10 @@ on boot
     # Allow QMUX daemon to assign port open wait time
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
 
-    setprop wifi.interface wlan0
-
-    setprop ro.telephony.call_ring.multiple false
-
-    #Set SUID bit for usbhub
-    #chmod 4755 /system/bin/usbhub remove SUID by tianxiaofu133439 for CTS test
-    chmod 755 /system/bin/usbhub
-    chmod 755 /system/bin/usbhub_init
-
     #Remove SUID bit for iproute2 ip tool
     chmod 0755 /system/bin/ip
 
-
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
-
-    # create symlink for fb1 as HDMI
-    symlink /dev/graphics/fb1 /dev/graphics/hdmi
 
     # setup permissions for fb1 related nodes
     chown system graphics /sys/class/graphics/fb1/hpd
@@ -132,10 +89,6 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb0/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb1/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb2/accept_ra 2
-    write /proc/sys/net/ipv6/conf/rmnet_usb3/accept_ra 2
 
     # To prevent out of order acknowledgements from making
     # connection tracking to treat them as not belonging to
@@ -144,7 +97,7 @@ on boot
     # connections on high-throughput links get dropped when
     # an ack packet comes out of order
     write /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal 1
-#[ECID:000000] ZTEBSP wanghaifei start 20120405, for akm sensor device init
+
     chmod 664 /dev/light_sensor
     chmod 664 /dev/akm8963_dev
     chmod 664 /dev/akm8963
@@ -168,7 +121,6 @@ on boot
     chown system root /sys/class/compass/akm8963/delay_mag
     chown system root /sys/class/compass/akm8963/delay_ori
     chown system root /sys/class/compass/akm8963/accel
-#[ECID:000000] ZTEBSP wanghaifei end 20120405, for akm sensor device init
 
 # import cne init file
 on post-fs
@@ -258,19 +210,8 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
-# Export GPIO56 for fusion targets to enable/disable hub
-service usbhub_init /system/bin/usbhub_init
-   class late_start
-   user root
-   disabled
-   oneshot
-
 on property:init.svc.surfaceflinger=stopped
     stop ppd
-    stop hdmid
-
-on property:ro.board.platform=msm7630_fusion
-    start usbhub_init
 
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
@@ -292,10 +233,6 @@ service qcom-c_main-sh /system/bin/sh /init.qcom.class_main.sh
 on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
     start config_bluetooth
-
-service cnd /system/bin/cnd
-    class late_start
-    socket cnd stream 666 root radio
 
 service rmt_storage /system/bin/rmt_storage
     class core
@@ -324,31 +261,11 @@ service hciattach_ath3k /system/bin/sh /system/etc/init.ath3k.bt.sh
      disabled
      oneshot
 
-service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
-    class late_start
-    user bluetooth
-    group bluetooth net_bt_admin inet
-    disabled
-    oneshot
-
-service bt-sap /system/bin/sapd 15
-    user bluetooth
-    group bluetooth net_bt_admin
-    class late_start
-    disabled
-    oneshot
-
 service bridgemgrd /system/bin/bridgemgrd
     class late_start
     user radio
     group radio qcom_diag
     disabled
-
-#service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
- #   class late_start
- #   user system
- #   group system inet
- #   disabled
 
 service qmiproxy /system/bin/qmiproxy
     class main
@@ -367,12 +284,6 @@ service netmgrd /system/bin/netmgrd
     class main
     disabled
 
-service sensors /system/bin/sensors.qcom
-    class late_start
-    user root
-    group root
-    disabled
-
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
     stop netmgrd
@@ -389,46 +300,44 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
     disabled
     oneshot
 
-service amp_init /system/bin/amploader -i
+service qcom-post-fs /system/bin/sh /system/etc/init.qcom.post_fs.sh
+    class core
+    user root
+    disabled
+    oneshot
+
+service qcom-sh /system/bin/sh /init.qcom.sh
+    class late_start
+    user root
+    oneshot
+
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     class late_start
     user root
     disabled
     oneshot
 
-service amp_load /system/bin/amploader -l 7000
+service wifi-sdio-on /system/bin/sh /system/etc/init.qcom.sdio.sh
     class late_start
-    user root
+    group wifi inet
     disabled
     oneshot
 
-service amp_unload /system/bin/amploader -u
-    class late_start
-    user root
-    disabled
-    oneshot
-
-service p2p_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
+service p2p_supplicant /system/bin/wpa_supplicant \
     -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -dddd \
     -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1
-    #   we will start as root and wpa_supplicant will switch to user wifi
-    #   after setting up the capabilities required for WEXT
-    #   user wifi
-    #   group wifi inet keystore
     class main
     group system wifi inet
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
 
-service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
-    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -dddd \
-    -e/data/misc/wifi/entropy.bin
-    #   we will start as root and wpa_supplicant will switch to user wifi
-    #   after setting up the capabilities required for WEXT
-    #   user wifi
-    #   group wifi inet keystore
+service wpa_supplicant /system/bin/wpa_supplicant \
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1 -W 
     class main
+    group wifi inet
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
@@ -463,92 +372,12 @@ service wiperiface /system/bin/wiperiface
     group gps qcom_oncrpc net_raw
     oneshot
 
-service gpsone_daemon /system/bin/gpsone_daemon
-    class late_start
-    user gps
-    group gps qcom_oncrpc inet net_raw
-    disabled
-
-service quipc_igsn /system/bin/quipc_igsn
-    class late_start
-    user gps
-    group inet gps
-    disabled
-
-service quipc_main /system/bin/quipc_main
-    class late_start
-    user gps
-    group gps net_admin wifi inet
-    disabled
-
-service location_mq /system/bin/location-mq
-    class late_start
-    user gps
-    group gps
-    disabled
-
-service xtwifi_inet /system/bin/xtwifi-inet-agent
-    class late_start
-    user gps
-    group inet gps
-    disabled
-
-service xtwifi_client /system/bin/xtwifi-client
-    class late_start
-    user gps
-    group net_admin wifi inet gps
-    disabled
-
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class late_start
     user root
     group system qcom_oncrpc
     disabled
     oneshot
-
-on property:crypto.driver.load=1
-     insmod /system/lib/modules/qce.ko
-     insmod /system/lib/modules/qcedev.ko
-
-on property:crypto.driver.load=0
-     exec /system/bin/rmmod qcedev.ko
-     exec /system/bin/rmmod qce.ko
-
-service drmdiag /system/bin/drmdiagapp
-    class late_start
-     user root
-     disabled
-     oneshot
-
-on property:drmdiag.load=1
-    start drmdiag
-
-on property:drmdiag.load=0
-    stop drmdiag
-
-service qcom-post-fs /system/bin/sh /system/etc/init.qcom.post_fs.sh
-    class core
-    user root
-    disabled
-    oneshot
-
-service qcom-sh /system/bin/sh /init.qcom.sh
-    class late_start
-    user root
-    oneshot
-
-service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-
-service wifi-sdio-on /system/bin/sh /system/etc/init.qcom.sdio.sh
-    class late_start
-    group wifi inet
-    disabled
-    oneshot
-
 
 on property:sys.boot_completed=1
     start qcom-post-boot
@@ -558,11 +387,6 @@ service atfwd /system/bin/ATFWD-daemon
     user system
     group system radio
 #    onrestart /system/bin/log -t RIL-ATFWD -p w "ATFWD daemon restarted"
-
-service hdmid /system/bin/hdmid
-    class late_start
-    socket hdmid stream 0660 root system graphics
-    disabled
 
 service ppd /system/bin/mm-pp-daemon
     class late_start
@@ -586,33 +410,12 @@ service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
 on property:persist.data.ds_fmc_app.mode=1
     start ds_fmc_appd
 
-service ims_regmanager /system/bin/exe-ims-regmanagerprocessnative
-    class late_start
-    user system
-    group qcom_oncrpc net_bt_admin inet radio wifi
-    disabled
-
 on property:persist.ims.regmanager.mode=1
     start ims_regmanager
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  1
-
-service time_daemon /system/bin/time_daemon
-    class late_start
-    user root
-    group root
-    oneshot
-    disabled
-
-on property:persist.timed.enable=true
-    start time_daemon
-
-service battery_monitor /system/bin/battery_monitor
-    user system
-    group system
-    disabled
 
 service ril-daemon1 /system/bin/rild -c 1
     class main
@@ -621,34 +424,6 @@ service ril-daemon1 /system/bin/rild -c 1
     user root
     disabled
     group radio cache inet misc audio sdcard_r sdcard_rw qcom_oncrpc diag qcom_diag log
-
-service profiler_daemon /system/bin/profiler_daemon
-    class late_start
-    user root
-    group root
-    disabled
-
-#ZTEBSP yuanjinxing 20120919, disable the sdcard service, start
-#service sdcard /system/bin/sdcard /data/media 1023 1023
-    #class late_start
-    #disabled
-#ZTEBSP yuanjinxing 20120919, disable the sdcard service, end
-
-#on property:ro.fuse_sdcard=true
- #   start sdcard
-
-# This will make sure that sdcard service starts as late_start.
-#on nonencrypted
- #   setprop ro.fuse_sdcard ${persist.fuse_sdcard}
-
-#on property:vold.decrypt=trigger_restart_framework
- #   setprop ro.fuse_sdcard ${persist.fuse_sdcard}
-
-service hcidump /system/bin/sh /system/etc/hcidump.sh
-    user bluetooth
-    group bluetooth system net_bt_admin net_admin
-    disabled
-    oneshot
 
 service charger /charger
     class charger
@@ -659,10 +434,7 @@ on property:service.adb.root=1
     restart adbd
     write /sys/class/android_usb/android0/enable 1
 
-
-#[ECID:000000] ZTEBSP wanghaifei start 20120405, for akm sensor device init
 service akmd /system/bin/akmd8963
     class late_start
     user root
     oneshot
-#[ECID:000000] ZTEBSP wanghaifei end 20120405, for akm sensor device init
