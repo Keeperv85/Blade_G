@@ -25,17 +25,6 @@ $(call inherit-product-if-exists, vendor/zte/blade_g/blade_g-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/zte/blade_g/overlay
 
-
-#LOCAL_PATH := device/zte/blade_g
-#ifeq ($(TARGET_PREBUILT_KERNEL),)
-#	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-#else
-#	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-#endif
-
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_KERNEL):kernel
-
 # Video decoding
 PRODUCT_PACKAGES += \
     libmm-omxcore \
@@ -47,6 +36,7 @@ PRODUCT_PACKAGES += \
     copybit.msm7x27a \
     gralloc.msm7x27a \
     hwcomposer.msm7x27a \
+    libgenlock \
     libtilerenderer
     
 # Audio
@@ -60,17 +50,12 @@ PRODUCT_PACKAGES += \
     gps.blade_g \
     libloc_api-rpc
 
-# Other
+# HAL's
 PRODUCT_PACKAGES += \
     lights.blade_g \
     sensors.msm7x27a \
     power.msm7x27a
     
-# Misc
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory \
-    dexpreopt
-
 # Bluez
 PRODUCT_PACKAGES += \
     bluetoothd \
@@ -81,12 +66,24 @@ PRODUCT_PACKAGES += \
     hciattach \
     javax.btobex
 
-#Wireless
+#LWP
 PRODUCT_PACKAGES += \
-    libnetcmdiface
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    VisualizationWallpapers \
+    librs_jni
+
+# Other Packages
+PRODUCT_PACKAGES += \
+    dexpreopt \
+    make_ext4fs \
+    setup_fs \
+    Torch \
+    com.android.future.usb.accessory
 
 # Permissions 
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
@@ -122,12 +119,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.product.locale.language=hu \
     ro.product.locale.region=HU \
     persist.sys.timezone=Europe/Budapest
-
-PRODUCT_PACKAGES += \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    librs_jni
 
 # Vold 
 PRODUCT_COPY_FILES += \
