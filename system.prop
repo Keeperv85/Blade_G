@@ -2,6 +2,9 @@
 # system.prop for Blade G
 #
 
+# Camcorder
+debug.camcorder.disablemeta=0
+
 # Bluetooth
 ro.bluetooth.remote.autoconnect=true
 ro.bluetooth.request.master=true
@@ -14,16 +17,8 @@ ro.max.fling_velocity=4000
 ro.opengles.version=131072
 ro.sf.lcd_density=240
 qemu.hw.mainkeys=0
-debug.composition.7x27A.type=mdp
-debug.composition.7x25A.type=mdp
-debug.composition.8x25.type=dyn
+debug.composition.type=dyn
 debug.hwc.dynThreshold=1.91
-
-# Enable Dynamic sampling to help with cases like mp3 playback.
-dev.pm.dyn_samplingrate=1
-
-# On Strider below period is found to improve power numbers for AAC MP4
-dev.pm.dyn_sample_period=700000
 
 # FM Radio
 ro.fm.analogpath.supported=true
@@ -32,7 +27,18 @@ ro.fm.mulinst.recording.support=false
 
 # Qualcomm
 com.qc.hardware=true
+dev.pm.dyn_samplingrate=1
+dev.pm.dyn_sample_period=700000
 ro.vendor.extension_library=/system/lib/libqc-opt.so
+
+# Media
+media.stagefright.enable-player=true
+media.stagefright.enable-meta=false
+media.stagefright.enable-scan=true
+media.stagefright.enable-http=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
 
 # Memory
 ro.zram.default=0
@@ -57,6 +63,7 @@ ro.telephony.call_ring.multiple=false
 ro.telephony.call_ring.delay=3000
 ro.use_data_netmgrd=true
 persist.data.ds_fmc_app.mode=0
+gsm.version.baseband=P825F10VB01
 
 # USB
 persist.sys.usb.config=mtp,adb
