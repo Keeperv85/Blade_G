@@ -18,5 +18,5 @@ $(call inherit-product, device/zte/blade_g/blade_g.mk)
 PRODUCT_NAME := cm_blade_g
 PRODUCT_BRAND := zte_europe
 PRODUCT_DEVICE := blade_g
-PRODUCT_MODEL := ZTE BLADE G
+PRODUCT_MODEL := Blade G
 PRODUCT_MANUFACTURER := ZTE
