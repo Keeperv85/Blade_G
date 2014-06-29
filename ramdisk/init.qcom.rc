@@ -306,11 +306,6 @@ service qcom-post-fs /system/bin/sh /system/etc/init.qcom.post_fs.sh
     disabled
     oneshot
 
-service qcom-sh /system/bin/sh /init.qcom.sh
-    class late_start
-    user root
-    oneshot
-
 service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     class late_start
     user root
@@ -370,13 +365,6 @@ service wiperiface /system/bin/wiperiface
     class late_start
     user gps
     group gps qcom_oncrpc net_raw
-    oneshot
-
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
-    user root
-    group system qcom_oncrpc
-    disabled
     oneshot
 
 on property:sys.boot_completed=1

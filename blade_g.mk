@@ -78,7 +78,6 @@ PRODUCT_PACKAGES += \
     dexpreopt \
     make_ext4fs \
     setup_fs \
-    Torch \
     com.android.future.usb.accessory
 
 # Permissions 
