@@ -1,0 +1,26 @@
+From f8f6e67770e74b0a924d094d4af19a7f3a92f528 Mon Sep 17 00:00:00 2001
+From: Keeperv85 <v8506reborn@hotmail.com>
+Date: Sat, 20 Sep 2014 20:43:29 +0200
+Subject: [PATCH] Build libwebcore instead of webviewchromium
+
+Change-Id: Ic24d4070d87bcd811d0736b3af29dded3a04ff2a
+---
+ Android.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Android.mk b/Android.mk
+index 2effc4e..2258968 100644
+--- a/Android.mk
++++ b/Android.mk
+@@ -22,7 +22,7 @@ include $(CLEAR_VARS)
+ 
+ LOCAL_MODULE := webview
+ LOCAL_MODULE_TAGS := optional
+-LOCAL_REQUIRED_MODULES := webviewchromium
++LOCAL_REQUIRED_MODULES := libwebcore
+ 
+ include $(BUILD_PHONY_PACKAGE)
+ 
+-- 
+1.9.1
+
