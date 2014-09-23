@@ -29,7 +29,7 @@ import android.telephony.SmsMessage;
 import android.os.SystemProperties;
 import android.telephony.SignalStrength;
 import android.text.TextUtils;
-import android.util.Log;
+import android.telephony.Rlog;
 
 import com.android.internal.telephony.RILConstants;
 import com.android.internal.telephony.gsm.SmsBroadcastConfigInfo;
@@ -48,7 +48,7 @@ import java.util.ArrayList;
  * these radios will send radio state and we have to query for SIM
  * status separately.
  * Custom Qualcomm No SimReady RIL for Huawei
- *
+ * Modify by Keeperv85 2014.09.22
  * {@hide}
  */
 
@@ -108,7 +108,7 @@ public class HuaweiQualcommRIL extends QualcommSharedRIL implements CommandsInte
         rr = findAndRemoveRequestFromList(serial);
 
         if (rr == null) {
-            Log.w(LOG_TAG, "Unexpected solicited response! sn: "
+            Rlog.w(RILJ_LOG_TAG, "Unexpected solicited response! sn: "
                             + serial + " error: " + error);
             return null;
         }
@@ -137,7 +137,7 @@ public class HuaweiQualcommRIL extends QualcommSharedRIL implements CommandsInte
             case RIL_REQUEST_ENTER_SIM_PUK2: ret =  responseInts(p); break;
             case RIL_REQUEST_CHANGE_SIM_PIN: ret =  responseInts(p); break;
             case RIL_REQUEST_CHANGE_SIM_PIN2: ret =  responseInts(p); break;
-            case RIL_REQUEST_ENTER_NETWORK_DEPERSONALIZATION: ret =  responseInts(p); break;
+            case RIL_REQUEST_ENTER_DEPERSONALIZATION_CODE: ret = responseInts(p); break;
             case RIL_REQUEST_GET_CURRENT_CALLS: ret =  responseCallList(p); break;
             case RIL_REQUEST_DIAL: ret =  responseVoid(p); break;
             case RIL_REQUEST_GET_IMSI: ret =  responseString(p); break;
@@ -254,7 +254,7 @@ public class HuaweiQualcommRIL extends QualcommSharedRIL implements CommandsInte
             }} catch (Throwable tr) {
                 // Exceptions here usually mean invalid RIL responses
 
-                Log.w(LOG_TAG, rr.serialString() + "< "
+                Rlog.w(RILJ_LOG_TAG, rr.serialString() + "< "
                         + requestToString(rr.mRequest)
                         + " exception, possible invalid RIL response", tr);
 
