@@ -102,7 +102,7 @@ BOARD_HARDWARE_CLASS := device/zte/blade_g/cmhw
 
 # Kernel
 BOARD_KERNEL_BASE := 0x00200000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=huawei androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.hardware=zte androidboot.selinux=permissive
 BOARD_PAGE_SIZE := 2048
 TARGET_KERNEL_SOURCE := kernel/zte/blade_g
 TARGET_KERNEL_CONFIG := cm11-perf_defconfig
