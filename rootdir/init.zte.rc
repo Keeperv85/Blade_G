@@ -95,7 +95,6 @@ on boot
     chmod 0664 /dev/proximity
     chmod 0664 /dev/accel
     chmod 0664 /dev/compass_aot
-    chmod 0664 /dev/akm8975_dev
 
     # Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
@@ -107,19 +106,11 @@ on boot
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
-    chown system system /sys/kernel/logger/log_main/enable
-    chown system system /sys/kernel/logger/log_events/enable
-    chown system system /sys/kernel/logger/log_radio/enable
-    chown system system /sys/kernel/logger/log_main/priority
-    chown system system /sys/kernel/logger/log_events/priority
-    chown system system /sys/kernel/logger/log_radio/priority
-
-    chown system system /sys/devices/platform/mmi_key_dev/keytest
-
+    chmod 664 /dev/input/event0
     chmod 664 /dev/input/event1
     chmod 664 /dev/input/event2
-
-    chown system system /sys/devices/platform/msm_hsusb/gadget/fixusb
+    chmod 664 /dev/input/event3
+    chmod 664 /dev/input/event4
 
     chown radio system /sys/power/touch_event
     chown radio system /sys/power/touch_event_timer
@@ -166,13 +157,11 @@ on post-fs-data
     chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
-    chmod 0664 /sys/devices/platform/msm_sdcc.4/polling
 
     # Chown polling nodes as needed from UI running on system server
     chown system system /sys/devices/platform/msm_sdcc.1/polling
     chown system system /sys/devices/platform/msm_sdcc.2/polling
     chown system system /sys/devices/platform/msm_sdcc.3/polling
-    chown system system /sys/devices/platform/msm_sdcc.4/polling
 
     # Create directories for wiper services
     mkdir /data/wpstiles/ 0755 shell
@@ -257,7 +246,7 @@ service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
     user system
     group system
 
-service akm8975 /system/bin/akmd8975
+service akm8973 /system/bin/akmd8973
     class main
     disabled
     oneshot
